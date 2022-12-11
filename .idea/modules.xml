@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java-Multithreading-Concurrency-Performance-Optimization.iml" filepath="$PROJECT_DIR$/.idea/Java-Multithreading-Concurrency-Performance-Optimization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application-metrics-example/application-metrics-example.iml" filepath="$PROJECT_DIR$/application-metrics-example/application-metrics-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atomic-integer-example/atomic-integer-example.iml" filepath="$PROJECT_DIR$/atomic-integer-example/atomic-integer-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atomic-reference-example/atomic-reference-example.iml" filepath="$PROJECT_DIR$/atomic-reference-example/atomic-reference-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/critical-sections-and-synchronization-example/critical-sections-and-synchronization-example.iml" filepath="$PROJECT_DIR$/critical-sections-and-synchronization-example/critical-sections-and-synchronization-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-races-example/data-races.iml" filepath="$PROJECT_DIR$/data-races-example/data-races.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deadlocks-example/deadlocks-example.iml" filepath="$PROJECT_DIR$/deadlocks-example/deadlocks-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/introduction-to-critical-sections-example/introduction-to-critical-sections-example.iml" filepath="$PROJECT_DIR$/introduction-to-critical-sections-example/introduction-to-critical-sections-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/joining-threads-example/joining-threads-example.iml" filepath="$PROJECT_DIR$/joining-threads-example/joining-threads-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/optimizing-for-latency-example/optimizing-for-latency-example.iml" filepath="$PROJECT_DIR$/optimizing-for-latency-example/optimizing-for-latency-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/optimizing-for-throughput-example/optimizing-for-throughput-example.iml" filepath="$PROJECT_DIR$/optimizing-for-throughput-example/optimizing-for-throughput-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/read-write-lock-example/read-write-lock-example.iml" filepath="$PROJECT_DIR$/read-write-lock-example/read-write-lock-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reentrantlock-example/reentrant.lock.iml" filepath="$PROJECT_DIR$/reentrantlock-example/reentrant.lock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thread-creation-part2-example/thread-creation-part2-example.iml" filepath="$PROJECT_DIR$/thread-creation-part2-example/thread-creation-part2-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thread-termination-example/thread-termination-example.iml" filepath="$PROJECT_DIR$/thread-termination-example/thread-termination-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/threads-creation-part1/threads-creation-part1.iml" filepath="$PROJECT_DIR$/threads-creation-part1/threads-creation-part1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wait-notify-example/wait-notify-example.iml" filepath="$PROJECT_DIR$/wait-notify-example/wait-notify-example.iml" />
+    </modules>
+  </component>
+</project>

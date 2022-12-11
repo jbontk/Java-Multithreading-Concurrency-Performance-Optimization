@@ -14,7 +14,6 @@
       <module fileurl="file://$PROJECT_DIR$/optimizing-for-latency-example/optimizing-for-latency-example.iml" filepath="$PROJECT_DIR$/optimizing-for-latency-example/optimizing-for-latency-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/optimizing-for-throughput-example/optimizing-for-throughput-example.iml" filepath="$PROJECT_DIR$/optimizing-for-throughput-example/optimizing-for-throughput-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/read-write-lock-example/read-write-lock-example.iml" filepath="$PROJECT_DIR$/read-write-lock-example/read-write-lock-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/reentrantlock-example/reentrant.lock.iml" filepath="$PROJECT_DIR$/reentrantlock-example/reentrant.lock.iml" />
       <module fileurl="file://$PROJECT_DIR$/thread-creation-part2-example/thread-creation-part2-example.iml" filepath="$PROJECT_DIR$/thread-creation-part2-example/thread-creation-part2-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/thread-termination-example/thread-termination-example.iml" filepath="$PROJECT_DIR$/thread-termination-example/thread-termination-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/threads-creation-part1/threads-creation-part1.iml" filepath="$PROJECT_DIR$/threads-creation-part1/threads-creation-part1.iml" />

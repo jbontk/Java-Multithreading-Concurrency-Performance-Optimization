@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="reentrant.lock" />
+        <module name="thread-creation-exercise-multiexecutor" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="reentrant.lock" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -26,11 +26,18 @@
  * Threads Creation - Part 2. Thread Inheritance
  * https://www.udemy.com/java-multithreading-concurrency-performance-optimization
  */
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class Main {
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
+
+
     public static final int MAX_PASSWORD = 9999;
 
     public static void main(String[] args) {
@@ -40,9 +47,13 @@ public class Main {
 
         List<Thread> threads = new ArrayList<>();
 
-        threads.add(new AscendingHackerThread(vault));
-        threads.add(new DescendingHackerThread(vault));
-        threads.add(new PoliceThread());
+        CountDownLatch latch = new CountDownLatch(2);
+
+
+        threads.add(new AscendingHackerThread(vault, latch));
+        threads.add(new DescendingHackerThread(vault, latch));
+        threads.add(new PoliceThread(latch));
+
 
         for (Thread thread : threads) {
             thread.start();
@@ -50,7 +61,7 @@ public class Main {
     }
 
     private static class Vault {
-        private int password;
+        private final int password;
 
         public Vault(int password) {
             this.password = password;
@@ -83,8 +94,11 @@ public class Main {
 
     private static class AscendingHackerThread extends HackerThread {
 
-        public AscendingHackerThread(Vault vault) {
+        private final CountDownLatch latch;
+
+        public AscendingHackerThread(Vault vault, CountDownLatch latch) {
             super(vault);
+            this.latch = latch;
         }
 
         @Override
@@ -94,14 +108,18 @@ public class Main {
                     System.out.println(this.getName() + " guessed the password " + guess);
                     System.exit(0);
                 }
+                latch.countDown();
             }
         }
     }
 
     private static class DescendingHackerThread extends HackerThread {
 
-        public DescendingHackerThread(Vault vault) {
+        private final CountDownLatch latch;
+
+        public DescendingHackerThread(Vault vault, CountDownLatch latch) {
             super(vault);
+            this.latch = latch;
         }
 
         @Override
@@ -111,19 +129,32 @@ public class Main {
                     System.out.println(this.getName() + " guessed the password " + guess);
                     System.exit(0);
                 }
+                latch.countDown();
             }
         }
     }
 
     private static class PoliceThread extends Thread {
+        private final CountDownLatch latch;
+
+        public PoliceThread(CountDownLatch latch) {
+            this.latch = latch;
+            setPriority(MIN_PRIORITY);
+        }
+
         @Override
         public void run() {
-            for (int i = 10; i > 0; i--) {
-                try {
+
+            try {
+                System.out.printf("%s -- Waiting to start\n", LocalDateTime.now().format(TIME_FORMATTER));
+                latch.await();
+                System.out.printf("%s -- Started\n", LocalDateTime.now().format(TIME_FORMATTER));
+                for (int i = 10; i > 0; i--) {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+
+                    System.out.println(i);
                 }
-                System.out.println(i);
+            } catch (InterruptedException e) {
             }
 
             System.out.println("Game over for you hackers");

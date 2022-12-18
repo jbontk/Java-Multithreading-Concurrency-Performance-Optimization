@@ -47,6 +47,7 @@ public class Main {
         }
 
         for (Thread thread : threads) {
+            // Do not tolerate more than 2 seconds per computation of factorial
             thread.join(2000);
         }
 
@@ -61,12 +62,13 @@ public class Main {
     }
 
     public static class FactorialThread extends Thread {
-        private long inputNumber;
+        private final long inputNumber;
         private BigInteger result = BigInteger.ZERO;
         private boolean isFinished = false;
 
         public FactorialThread(long inputNumber) {
             this.inputNumber = inputNumber;
+            this.setName("Factorial-thread-" + inputNumber);
         }
 
         @Override

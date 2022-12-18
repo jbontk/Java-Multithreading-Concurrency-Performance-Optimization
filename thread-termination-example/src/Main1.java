@@ -31,6 +31,7 @@ public class Main1 {
         Thread thread = new Thread(new BlockingTask());
 
         thread.start();
+        thread.interrupt();
     }
 
     private static class BlockingTask implements Runnable {
@@ -41,7 +42,7 @@ public class Main1 {
             try {
                 Thread.sleep(500000);
             } catch (InterruptedException e) {
-                System.out.println("Existing blocking thread");
+                System.out.println("Exiting blocking thread");
             }
         }
     }

@@ -36,7 +36,9 @@ public class ComplexCalculation {
 
         @Override
         public void run() {
-           this.result = base.pow(power.intValue());
+           for (BigInteger i = BigInteger.ZERO ; i.compareTo(power) != 0; i = i.add(BigInteger.ONE)) {
+               result = result.multiply(base);
+           }
         }
 
         public BigInteger getResult() { return result; }

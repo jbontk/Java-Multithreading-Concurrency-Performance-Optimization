@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/reentrantlock-example/pom.xml" />
         <option value="$PROJECT_DIR$/thread-creation-exercise-multiexecutor/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/pom.xml" />
       </list>
     </option>
   </component>

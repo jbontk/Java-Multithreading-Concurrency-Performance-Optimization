@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="multithreaded-calculation" />
         <module name="reentrant.lock" />
-        <module name="thread-creation-exercise-multiexecutor" />
+        <module name="thread-creation-multiexecutor" />
       </profile>
     </annotationProcessing>
   </component>

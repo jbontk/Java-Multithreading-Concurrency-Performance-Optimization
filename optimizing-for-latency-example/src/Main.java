@@ -43,20 +43,29 @@ public class Main {
         BufferedImage resultImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
 
         long startTime = System.currentTimeMillis();
-        //recolorSingleThreaded(originalImage, resultImage);
-        int numberOfThreads = 1;
+        int numberOfThreads = Runtime.getRuntime().availableProcessors();
         recolorMultithreaded(originalImage, resultImage, numberOfThreads);
+//        recolorSingleThreaded(originalImage, resultImage);
         long endTime = System.currentTimeMillis();
 
         long duration = endTime - startTime;
 
-        File outputFile = new File(DESTINATION_FILE);
+        File outputFile = getDestinationFile();
         ImageIO.write(resultImage, "jpg", outputFile);
 
-        System.out.println(String.valueOf(duration));
+        System.out.println(duration);
+    }
+
+    private static File getDestinationFile() {
+        File outputFile = new File(DESTINATION_FILE);
+        if (!outputFile.exists()) {
+            outputFile.mkdirs();
+        }
+        return outputFile;
     }
 
     public static void recolorMultithreaded(BufferedImage originalImage, BufferedImage resultImage, int numberOfThreads) {
+        System.out.printf("Number of threads: %d\n", numberOfThreads);
         List<Thread> threads = new ArrayList<>();
         int width = originalImage.getWidth();
         int height = originalImage.getHeight() / numberOfThreads;

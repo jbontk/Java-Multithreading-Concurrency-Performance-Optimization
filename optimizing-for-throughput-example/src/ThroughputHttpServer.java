@@ -36,7 +36,15 @@ import java.util.concurrent.Executors;
 
 /**
  * Optimizing for Throughput Part 2 - HTTP server + Jmeter
- * https://www.udemy.com/java-multithreading-concurrency-performance-optimization
+ * <a href="https://www.udemy.com/java-multithreading-concurrency-performance-optimization">...</a>
+ * @apiNote
+ * <ul>
+ *     <li>Change urn config to use working directory = /workspaces/Java-Multithreading-Concurrency-Performance-Optimization/optimizing-for-throughput-example (instead of the project directory (parent), which is one level not deep enough)</li>
+ *     <li>Install JMeter locally</li>
+ *     <li>Open .jmx file in it</li>
+ *     <li>Adjust path to CSV file that contains the list of words to send</li>
+ *     <li>Forward port when running on remote backend</li>
+ * </ul>
  */
 public class ThroughputHttpServer {
     private static final String INPUT_FILE = "./resources/war_and_peace.txt";

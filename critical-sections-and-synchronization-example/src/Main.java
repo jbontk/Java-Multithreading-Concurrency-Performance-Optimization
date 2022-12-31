@@ -22,12 +22,21 @@
  * SOFTWARE.
  */
 
+import java.util.Arrays;
+
 /**
  * Critical Section & Synchronization
  * https://www.udemy.com/java-multithreading-concurrency-performance-optimization
  */
 public class Main {
+
+    private static final int COUNT = 100_000_000;
+    private static boolean THREAD_SAFE;
+
     public static void main(String[] args) throws InterruptedException {
+        THREAD_SAFE = getThreadSafe(args);
+        System.out.printf("Is thread safe? %s\n", THREAD_SAFE);
+
         InventoryCounter inventoryCounter = new InventoryCounter();
         IncrementingThread incrementingThread = new IncrementingThread(inventoryCounter);
         DecrementingThread decrementingThread = new DecrementingThread(inventoryCounter);
@@ -41,9 +50,18 @@ public class Main {
         System.out.println("We currently have " + inventoryCounter.getItems() + " items");
     }
 
+    private static boolean getThreadSafe(String[] args) {
+        try {
+            return Boolean.parseBoolean(args[0]);
+        } catch (Exception e) {
+            System.err.printf("Failed to parse boolean from %s. Error: %s\n", Arrays.toString(args), e.getMessage());
+            return false;
+        }
+    }
+
     public static class DecrementingThread extends Thread {
 
-        private InventoryCounter inventoryCounter;
+        private final InventoryCounter inventoryCounter;
 
         public DecrementingThread(InventoryCounter inventoryCounter) {
             this.inventoryCounter = inventoryCounter;
@@ -51,7 +69,7 @@ public class Main {
 
         @Override
         public void run() {
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < COUNT; i++) {
                 inventoryCounter.decrement();
             }
         }
@@ -59,7 +77,7 @@ public class Main {
 
     public static class IncrementingThread extends Thread {
 
-        private InventoryCounter inventoryCounter;
+        private final InventoryCounter inventoryCounter;
 
         public IncrementingThread(InventoryCounter inventoryCounter) {
             this.inventoryCounter = inventoryCounter;
@@ -67,7 +85,7 @@ public class Main {
 
         @Override
         public void run() {
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < COUNT; i++) {
                 inventoryCounter.increment();
             }
         }
@@ -76,22 +94,34 @@ public class Main {
     private static class InventoryCounter {
         private int items = 0;
 
-        Object lock = new Object();
+        final Object lock = new Object();
 
         public void increment() {
-            synchronized (this.lock) {
+            if (THREAD_SAFE) {
+                synchronized (this.lock) {
+                    items++;
+                }
+            } else {
                 items++;
             }
         }
 
         public void decrement() {
-            synchronized (this.lock) {
+            if (THREAD_SAFE) {
+                synchronized (this.lock) {
+                    items--;
+                }
+            } else {
                 items--;
             }
         }
 
         public int getItems() {
-            synchronized (this.lock) {
+            if (THREAD_SAFE) {
+                synchronized (this.lock) {
+                    return items;
+                }
+            } else {
                 return items;
             }
         }

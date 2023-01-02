@@ -10,19 +10,17 @@ public class MinMaxMetrics {
      * Initializes all member variables
      */
     public MinMaxMetrics() {
-        min = 0;
-        max = 0;
+        this.min = Long.MIN_VALUE;
+        this.max = Long.MAX_VALUE;
     }
 
     /**
      * Adds a new sample to our metrics.
      */
-    public synchronized void addSample(long newSample) {
-        if (newSample < min) {
-            min = newSample;
-        }
-        if (newSample > max) {
-            max = newSample;
+    public void addSample(long newSample) {
+        synchronized (this) {
+            this.min = Math.min(newSample, this.min);
+            this.max = Math.max(newSample, this.max);
         }
     }
 
@@ -30,13 +28,13 @@ public class MinMaxMetrics {
      * Returns the smallest sample we've seen so far.
      */
     public long getMin() {
-        return min;
+        return this.min;
     }
 
     /**
      * Returns the biggest sample we've seen so far.
      */
     public long getMax() {
-        return max;
+        return this.max;
     }
 }

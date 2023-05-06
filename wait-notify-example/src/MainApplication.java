@@ -22,7 +22,10 @@
  * SOFTWARE.
  */
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -161,6 +164,9 @@ public class MainApplication {
         public synchronized void add(MatricesPair matricesPair) {
             while (queue.size() == CAPACITY) {
                 try {
+                    //
+                    // Wait to be woken up (by the consumer)
+                    //
                     wait();
                 } catch (InterruptedException e) {
                 }
@@ -191,6 +197,9 @@ public class MainApplication {
 
             matricesPair = queue.remove();
             if (queue.size() == CAPACITY - 1) {
+                //
+                // Wake up (the producer)
+                //
                 notifyAll();
             }
             return matricesPair;

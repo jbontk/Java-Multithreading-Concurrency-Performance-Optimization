@@ -87,11 +87,23 @@ public class Main {
             StackNode<T> newHeadNode = new StackNode<>(value);
 
             while (true) {
+                //
+                // read the current value from the head
+                //
                 StackNode<T> currentHeadNode = head.get();
+                //
+                // calculate a new candidate to replace the head
+                //
                 newHeadNode.next = currentHeadNode;
+                //
+                // use CAS to check that the expected value still holds, and if true sets the head to the new candidate
+                //
                 if (head.compareAndSet(currentHeadNode, newHeadNode)) {
                     break;
                 } else {
+                    //
+                    // repeat the process
+                    //
                     LockSupport.parkNanos(1);
                 }
             }
@@ -99,15 +111,33 @@ public class Main {
         }
 
         public T pop() {
+            //
+            // read the current value from the head
+            //
             StackNode<T> currentHeadNode = head.get();
             StackNode<T> newHeadNode;
 
             while (currentHeadNode != null) {
+                //
+                // calculate a new candidate to replace the head
+                //
                 newHeadNode = currentHeadNode.next;
+                //
+                // use CAS to check that the expected value still holds, and if true sets the head to the new candidate
+                //
                 if (head.compareAndSet(currentHeadNode, newHeadNode)) {
+                    //
+                    // head is pointing to newHeadNode, and we successfully popped the stack
+                    //
                     break;
                 } else {
+                    //
+                    // head was changed by another thread after we read from the head variable => wait 1 ns
+                    //
                     LockSupport.parkNanos(1);
+                    //
+                    // re-read from the head and try again
+                    //
                     currentHeadNode = head.get();
                 }
             }

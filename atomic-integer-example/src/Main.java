@@ -78,10 +78,16 @@ public class Main {
     private static class InventoryCounter {
         private AtomicInteger items = new AtomicInteger(0);
 
+        /**
+         * @implNote atomic operation => no need to synchronize
+         */
         public void increment() {
             items.incrementAndGet();
         }
 
+        /**
+         * @implNote atomic operation => no need to synchronize
+         */
         public void decrement() {
             items.decrementAndGet();
         }
